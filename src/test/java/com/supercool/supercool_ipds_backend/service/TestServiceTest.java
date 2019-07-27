@@ -29,5 +29,17 @@ public class TestServiceTest {
         Assert.assertEquals(200, responseEntity.getStatusCodeValue());
     }
 
+    @Test
+    public void should_return_responseEntity_when_call_TestService_given_customException () {
+
+        TestService testService = mock(TestService.class);
+
+        when(testService.testResult()).thenThrow(new CustomException("0000", "error"));
+
+        Assertions.assertThrows(CustomException.class, ()->{
+            testService.testResult();
+        });
+
+    }
 
 }
