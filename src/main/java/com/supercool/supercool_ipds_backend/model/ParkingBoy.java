@@ -1,6 +1,9 @@
 package com.supercool.supercool_ipds_backend.model;
 
+import com.supercool.supercool_ipds_backend.common.utils.DateUtils;
+
 import javax.persistence.*;
+import java.util.Calendar;
 import java.util.Date;
 
 @Entity
@@ -24,7 +27,10 @@ public class ParkingBoy {
     private String status;
 
     @Transient
-    private String age;
+    private int age;
+
+    @Transient
+    private int workExperience;
 
     public Long getId() {
         return id;
@@ -82,11 +88,14 @@ public class ParkingBoy {
         this.status = status;
     }
 
-    public String getAge() {
-        return age;
+
+    public int getAge() {
+        return DateUtils.calculateAge(getBirthYear());
     }
 
-    public void setAge(String age) {
-        this.age = age;
+
+    public int getWorkExperience() {
+        return DateUtils.calculateAge(getEmployeeDate());
     }
+
 }
