@@ -21,13 +21,26 @@ public class ParkingLotController {
         return ResponseEntityUtil.responseSuccess(HttpStatus.OK);
     }
 
-    @GetMapping
-    public ResponseEntity getParkingLots() {
-        return ResponseEntityUtil.responseSuccess(parkingLotService.getParkingLots());
+    @GetMapping("/current-page/{current}/page-size/{size}")
+    public ResponseEntity getParkingLots(@PathVariable int current, @PathVariable int size) {
+        return ResponseEntityUtil.responseSuccess(parkingLotService.getParkingLots(current, size));
     }
 
     @GetMapping("/{name}")
     public ResponseEntity findParkingLotByName(@PathVariable String name) {
         return ResponseEntityUtil.responseSuccess(parkingLotService.findParkingLotByName(name));
     }
+
+    @PutMapping
+    public ResponseEntity updateParkingLot (@RequestBody ParkingLot parkingLot) {
+        parkingLotService.updateParkingLot(parkingLot);
+        return ResponseEntityUtil.responseSuccess(HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteParkingLot (@PathVariable Long id) {
+        parkingLotService.deleteParkingLotById(id);
+        return ResponseEntityUtil.responseSuccess(HttpStatus.OK);
+    }
+
 }

@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
@@ -45,9 +47,9 @@ public class ParkingLotServiceTest {
         ParkingLot parkingLot = new ParkingLot();
         List<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(parkingLot);
-        when(parkingLotRepository.findAll()).thenReturn(parkingLots);
-
-        List<ParkingLot> results =  parkingLotService.getParkingLots();
+        Page resultPage = new PageImpl(parkingLots);
+        when(parkingLotRepository.findAll((org.springframework.data.domain.Pageable) Mockito.any())).thenReturn(resultPage);
+        List<ParkingLot> results =  parkingLotService.getParkingLots(0, 1);
 
         Assertions.assertEquals(1, results.size());
     }
