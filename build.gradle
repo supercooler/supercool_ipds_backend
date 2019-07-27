@@ -9,6 +9,7 @@ buildscript {
     dependencies {
         classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
         classpath "gradle.plugin.com.boxfuse.client:gradle-plugin-publishing:5.2.4"
+        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.0'
     }
 }
 
@@ -19,6 +20,7 @@ plugins {
 
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'org.flywaydb.flyway'
+apply plugin: 'org.junit.platform.gradle.plugin'
 
 group = 'com.supercool'
 version = '0.0.1-SNAPSHOT'
@@ -28,13 +30,23 @@ repositories {
     mavenCentral()
 }
 
+test {
+    useJUnitPlatform()
+}
+
 dependencies {
     compile('org.flywaydb:flyway-core')
     implementation 'org.springframework.boot:spring-boot-starter-web'
     runtimeOnly 'com.h2database:h2'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    
+    testCompile group: 'org.junit.platform', name: 'junit-platform-launcher', version: '1.2.0'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.2.0'
+    testCompile group: 'org.junit.vintage', name: 'junit-vintage-engine', version: '5.2.0'
+    
+
 }
 flyway {
     url = 'jdbc:h2:file:./parking_lot'
     user = 'sa'
-} 
+}
