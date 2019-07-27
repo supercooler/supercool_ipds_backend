@@ -22,8 +22,12 @@ public class ParkingLotController {
     }
 
     @GetMapping
-    public ResponseEntity getParkingLots(){
-        parkingLotService.getParkingLots();
-        return ResponseEntityUtil.responseSuccess(HttpStatus.OK);
+    public ResponseEntity getParkingLots() {
+        return ResponseEntityUtil.responseSuccess(parkingLotService.getParkingLots());
+    }
+
+    @GetMapping("/{name}")
+    public ResponseEntity findParkingLotByName(@PathVariable String name) {
+        return ResponseEntityUtil.responseSuccess(parkingLotService.findParkingLotByName(name));
     }
 }

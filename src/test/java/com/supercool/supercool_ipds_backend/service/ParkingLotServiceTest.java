@@ -52,4 +52,16 @@ public class ParkingLotServiceTest {
         Assertions.assertEquals(1, results.size());
     }
 
+
+    @Test
+    public void should_return_parking_lots_when_call_find_all_parkLots_by_name() {
+        ParkingLot parkingLot = new ParkingLot();
+        List<ParkingLot> parkingLots = new ArrayList<>();
+        parkingLots.add(parkingLot);
+        when(parkingLotRepository.findAllByName("Ethan")).thenReturn(parkingLots);
+
+        List<ParkingLot> results =  parkingLotService.findParkingLotByName("Ethan");
+
+        Assertions.assertEquals(1, results.size());
+    }
 }
