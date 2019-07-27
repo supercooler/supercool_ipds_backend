@@ -2,10 +2,13 @@ server:
   port: 8080
 spring:
   datasource:
-    url: jdbc:h2:file:./h2/org
-  jpa:
-    hibernate:
-      ddl-auto: update
+    url: jdbc:mysql://scurl/scdev
+    user: root
+    password: scpsw
   h2:
     console:
       enabled: true
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
