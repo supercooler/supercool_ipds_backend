@@ -3,7 +3,7 @@ server:
 spring:
   datasource:
     url: jdbc:mysql://scurl/scdev
-    user: root
+    username: root
     password: scpsw
   h2:
     console:
