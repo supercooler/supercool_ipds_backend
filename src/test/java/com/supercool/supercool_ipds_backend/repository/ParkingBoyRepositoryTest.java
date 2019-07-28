@@ -41,7 +41,8 @@ public class ParkingBoyRepositoryTest {
         parkingBoy.setBirthYear(new Date());
         parkingBoy.setEmployeeDate(new Date());
         parkingBoyRepository.save(parkingBoy);
-        List<ParkingBoy> parkingBoys = parkingBoyRepository.findByNameLike("test");
+        parkingBoyRepository.findAll();
+        List<ParkingBoy> parkingBoys = parkingBoyRepository.findByNameLike("%"+"test".trim().toUpperCase()+"%");
         assertEquals("test", parkingBoys.get(0).getName());
     }
 
