@@ -53,4 +53,6 @@ flyway {
     url = 'jdbc:mysql://scurl/scdev'
     user = 'root'
     password = 'scpsw'
+//    url = 'jdbc:h2:file:./h2/org'
+//    user = 'sa'
 }
