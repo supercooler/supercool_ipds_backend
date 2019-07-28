@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface ParkingBoyRepository extends JpaRepository<ParkingBoy, Long> {
     public List<ParkingBoy> findAll();
-    public List<ParkingBoy> findByNameLike(String name);
+    public List<ParkingBoy> findByNameLikeIgnoreCase(String name);
     public List<ParkingBoy> findByGender(String gender);
 }
