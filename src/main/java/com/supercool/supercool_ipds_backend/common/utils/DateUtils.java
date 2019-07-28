@@ -15,4 +15,8 @@ public class DateUtils {
         return calendar.get(Calendar.YEAR);
     }
 
+    public static Date calculateDate(int age) {
+        return new Date((getYear(new Date())-age-1970+1)*31536000000L);
+    }
+
 }

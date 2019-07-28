@@ -98,4 +98,13 @@ public class ParkingBoy {
         return DateUtils.calculateAge(getEmployeeDate());
     }
 
+    public void setAge(int age) {
+        this.birthYear = DateUtils.calculateDate(age);
+        this.age = age;
+    }
+
+    public void setWorkExperience(int workExperience) {
+        this.employeeDate = DateUtils.calculateDate(workExperience);
+        this.workExperience = workExperience;
+    }
 }

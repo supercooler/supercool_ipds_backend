@@ -18,4 +18,8 @@ public class ParkingBoyService {
         if(gender!=null)return parkingBoyRepository.findByGender(gender);
         return parkingBoyRepository.findAllByOrderByBirthYearDesc();
     }
+
+    public ParkingBoy updateParkingBoy(ParkingBoy parkingBoy) {
+        return parkingBoyRepository.save(parkingBoy);
+    }
 }
