@@ -24,7 +24,7 @@ public class ParkingBoy {
     @Column(length = 11)
     private String phone;
 
-    private String status;
+    private String status = "空闲";
 
     @Transient
     private int age;

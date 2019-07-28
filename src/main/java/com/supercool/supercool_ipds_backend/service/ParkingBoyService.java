@@ -22,4 +22,8 @@ public class ParkingBoyService {
     public ParkingBoy updateParkingBoy(ParkingBoy parkingBoy) {
         return parkingBoyRepository.save(parkingBoy);
     }
+
+    public ParkingBoy addParkingBoy(ParkingBoy parkingBoy) {
+        return parkingBoyRepository.save(parkingBoy);
+    }
 }

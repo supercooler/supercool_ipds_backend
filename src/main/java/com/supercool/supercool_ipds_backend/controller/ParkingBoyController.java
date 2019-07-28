@@ -26,5 +26,9 @@ public class ParkingBoyController {
         return ResponseEntityUtil.responseSuccess(parkingBoyService.updateParkingBoy(parkingBoy));
     }
 
-
+    @PostMapping
+    public ResponseEntity addParkingBoy(@RequestBody ParkingBoy parkingBoy) {
+        return ResponseEntityUtil.responseSuccess(parkingBoyService.addParkingBoy(parkingBoy));
+    }
+    
 }
