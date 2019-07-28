@@ -1,1 +1,1 @@
-insert into user(user_name,password) values('jerryLi','123456')
+insert into user(user_name,password) values('supermanager','123')
