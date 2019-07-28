@@ -14,8 +14,8 @@ public class ParkingBoyService {
     private ParkingBoyRepository parkingBoyRepository;
 
     public List<ParkingBoy> getParkingBoys(String name,String gender) {
-        if(name!=null)return parkingBoyRepository.findByNameLikeIgnoreCase("%"+name.trim().toUpperCase()+"%");
+        if(name!=null)return parkingBoyRepository.findByNameLike("%"+name.trim().toUpperCase()+"%");
         if(gender!=null)return parkingBoyRepository.findByGender(gender);
-        return parkingBoyRepository.findAll();
+        return parkingBoyRepository.findAllByOrderByBirthYearDesc();
     }
 }
