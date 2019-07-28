@@ -1,6 +1,6 @@
 create table parking_lot
 (
-    id       bigint auto_increment primary key,
+    id       bigint primary key auto_increment,
     address  varchar(255),
     capacity integer not null,
     name     varchar(255),

@@ -4,10 +4,7 @@ import com.supercool.supercool_ipds_backend.common.response.ResponseEntityUtil;
 import com.supercool.supercool_ipds_backend.service.ParkingBoyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/parking-boys")
@@ -18,8 +15,10 @@ public class ParkingBoyController {
     private ParkingBoyService parkingBoyService;
 
     @GetMapping
-    public ResponseEntity getParkingBoys(){
-        return ResponseEntityUtil.responseSuccess(parkingBoyService.getParkingBoys());
+    public ResponseEntity getParkingBoys(@RequestParam(value = "name",required = false) String name,
+                                         @RequestParam(value="gender",required = false)String gender){
+        return ResponseEntityUtil.responseSuccess(parkingBoyService.getParkingBoys(name,gender));
     }
+
 
 }

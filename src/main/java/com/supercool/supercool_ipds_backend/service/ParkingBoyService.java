@@ -13,7 +13,9 @@ public class ParkingBoyService {
     @Autowired
     private ParkingBoyRepository parkingBoyRepository;
 
-    public List<ParkingBoy> getParkingBoys() {
+    public List<ParkingBoy> getParkingBoys(String name,String gender) {
+        if(name!=null)return parkingBoyRepository.findByNameLike("%"+name+"%");
+        if(gender!=null)return parkingBoyRepository.findByGender(gender);
         return parkingBoyRepository.findAll();
     }
 }

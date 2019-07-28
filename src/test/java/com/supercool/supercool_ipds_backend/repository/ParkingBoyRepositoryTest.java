@@ -33,4 +33,23 @@ public class ParkingBoyRepositoryTest {
         assertEquals(29, parkingBoys.get(0).getAge());
     }
 
+    @Test
+    public void should_return_parking_boy_with_name_when_call_findAll_given_parking_boy_with_name_samson() throws ParseException {
+        ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.setId(1L);
+        parkingBoy.setName("samson");
+        parkingBoyRepository.save(parkingBoy);
+        List<ParkingBoy> parkingBoys = parkingBoyRepository.findByNameLike("samson");
+        assertEquals("samson", parkingBoys.get(0).getName());
+    }
+    @Test
+    public void should_return_parking_boy_with_gender_when_call_findAll_given_parking_boy_with_gender() throws ParseException {
+        ParkingBoy parkingBoy = new ParkingBoy();
+        parkingBoy.setId(1L);
+        parkingBoy.setGender("男");
+        parkingBoyRepository.save(parkingBoy);
+        List<ParkingBoy> parkingBoys = parkingBoyRepository.findByGender("男");
+        assertEquals("男", parkingBoys.get(0).getGender());
+    }
+
 }
