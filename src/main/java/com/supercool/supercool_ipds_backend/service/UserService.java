@@ -14,22 +14,17 @@ public class UserService {
     private UserRepository userRepository;
 
     public User UserLogin(String userName,String password){
-        try{
-            User user = userRepository.findByUserName(userName);
-            if(user == null){
-                throw new CustomException(ExceptionEnum.USER_NOT_EXIST_Exception.getMessage(),ExceptionEnum.USER_NOT_EXIST_Exception.getCode());
+        User user = userRepository.findByUserName(userName);
+        if(user == null){
+            throw new CustomException(ExceptionEnum.USER_NOT_EXIST_Exception.getMessage(),ExceptionEnum.USER_NOT_EXIST_Exception.getCode());
+        }
+        else{
+            if(user.getPassword().equalsIgnoreCase(password)){
+                return user;
             }
             else{
-                if(user.getPassword().equalsIgnoreCase(password)){
-                    return user;
-                }
-                else{
-                    throw new CustomException(ExceptionEnum.USER_ACCOUNT_ERROR_Exception.getMessage(),ExceptionEnum.USER_ACCOUNT_ERROR_Exception.getCode());
-                }
+                throw new CustomException(ExceptionEnum.USER_ACCOUNT_ERROR_Exception.getMessage(),ExceptionEnum.USER_ACCOUNT_ERROR_Exception.getCode());
             }
-        }
-        catch (Exception e){
-            throw new CustomException(ExceptionEnum.USER_NOT_EXIST_Exception.getMessage(),ExceptionEnum.USER_NOT_EXIST_Exception.getCode());
         }
     }
 }
