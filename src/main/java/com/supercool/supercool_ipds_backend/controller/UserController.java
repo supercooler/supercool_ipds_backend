@@ -13,7 +13,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping
+    @PostMapping
     public User loginUser(@RequestBody User user){
         return userService.UserLogin(user.getUserName(),user.getPassword());
     }
