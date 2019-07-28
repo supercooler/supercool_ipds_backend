@@ -26,4 +26,9 @@ public class ParkingBoyService {
     public ParkingBoy addParkingBoy(ParkingBoy parkingBoy) {
         return parkingBoyRepository.save(parkingBoy);
     }
+
+    public void deleteParkingBoy(Long id) {
+        ParkingBoy parkingBoy = parkingBoyRepository.findById(id).orElse(null);
+        parkingBoyRepository.delete(parkingBoy);
+    }
 }

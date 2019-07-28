@@ -30,5 +30,11 @@ public class ParkingBoyController {
     public ResponseEntity addParkingBoy(@RequestBody ParkingBoy parkingBoy) {
         return ResponseEntityUtil.responseSuccess(parkingBoyService.addParkingBoy(parkingBoy));
     }
-    
+
+    @DeleteMapping
+    public ResponseEntity deleteParkingBoy(@RequestParam Long id) {
+        parkingBoyService.deleteParkingBoy(id);
+        return ResponseEntityUtil.responseSuccess(null);
+    }
+
 }
