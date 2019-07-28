@@ -25,7 +25,7 @@ public class ParkingLotService {
     }
 
     public List<ParkingLot> findParkingLotByName(String name) {
-        return parkingLotRepository.findAllByName(name);
+        return parkingLotRepository.findByNameLike(name);
     }
 
     public void updateParkingLot(ParkingLot parkingLot) {
@@ -37,4 +37,7 @@ public class ParkingLotService {
     }
 
 
+    public List<ParkingLot> getAllParkingLots() {
+        return parkingLotRepository.findAll();
+    }
 }

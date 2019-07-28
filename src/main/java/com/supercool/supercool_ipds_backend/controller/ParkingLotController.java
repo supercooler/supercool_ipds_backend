@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/parking-lots")
+@CrossOrigin(origins = "*", maxAge = 1000L)
 public class ParkingLotController {
 
     @Autowired
@@ -21,14 +22,14 @@ public class ParkingLotController {
         return ResponseEntityUtil.responseSuccess(HttpStatus.OK);
     }
 
-    @GetMapping("/current-page/{current}/page-size/{size}")
-    public ResponseEntity getParkingLots(@PathVariable int current, @PathVariable int size) {
-        return ResponseEntityUtil.responseSuccess(parkingLotService.getParkingLots(current, size));
+    @GetMapping("/current-page/{current}/page-size/{pageSize}")
+    public ResponseEntity getParkingLots(@PathVariable int current, @PathVariable int pageSize) {
+        return ResponseEntityUtil.responseSuccess(parkingLotService.getParkingLots(current, pageSize));
     }
 
     @GetMapping("/{name}")
     public ResponseEntity findParkingLotByName(@PathVariable String name) {
-        return ResponseEntityUtil.responseSuccess(parkingLotService.findParkingLotByName(name));
+        return ResponseEntityUtil.responseSuccess(parkingLotService.findParkingLotByName("%"+name+"%"));
     }
 
     @PutMapping
@@ -41,6 +42,11 @@ public class ParkingLotController {
     public ResponseEntity deleteParkingLot (@PathVariable Long id) {
         parkingLotService.deleteParkingLotById(id);
         return ResponseEntityUtil.responseSuccess(HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity getAllParkingLots() {
+        return ResponseEntityUtil.responseSuccess(parkingLotService.getAllParkingLots());
     }
 
 }

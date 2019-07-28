@@ -60,7 +60,7 @@ public class ParkingLotServiceTest {
         ParkingLot parkingLot = new ParkingLot();
         List<ParkingLot> parkingLots = new ArrayList<>();
         parkingLots.add(parkingLot);
-        when(parkingLotRepository.findAllByName("Ethan")).thenReturn(parkingLots);
+        when(parkingLotRepository.findByNameLike("Ethan")).thenReturn(parkingLots);
 
         List<ParkingLot> results =  parkingLotService.findParkingLotByName("Ethan");
 
