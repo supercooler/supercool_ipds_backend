@@ -49,6 +49,27 @@ public class ParkingOrderRepositoryTest {
         //then
         assertEquals(parkingOrderDO.getParkingBoyId(),parkingOrdeDos.get(0).getParkingBoyId());
     }
+    
+    @Test
+    public void should_return_true_size_when_call_get_orders(){
+        ParkingOrder parkingOrder = new ParkingOrder();
+        parkingOrder.setCarLisenceNumber("1234567");
+        parkingOrder.setPreLocation("南方软件园");
+        parkingOrder.setUserPhone("18229797216");
+        parkingOrderRepository.save(parkingOrder);
+        assertEquals(1,parkingOrderRepository.findAll().size());
+    }
+
+    @Test
+    public void should_return_true_size_when_call_delete_orders(){
+        ParkingOrder parkingOrder = new ParkingOrder();
+        parkingOrder.setCarLisenceNumber("1234567");
+        parkingOrder.setPreLocation("南方软件园");
+        parkingOrder.setUserPhone("18229797216");
+        parkingOrderRepository.save(parkingOrder);
+        parkingOrderRepository.deleteById(Long.valueOf(1));
+        assertEquals(0,parkingOrderRepository.findAll().size());
+    }
 
     private Date getDateFromString(String string) throws ParseException {
         return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(string);

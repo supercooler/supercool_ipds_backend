@@ -16,9 +16,10 @@ public class ParkingBoyService {
     @Autowired
     private ParkingBoyRepository parkingBoyRepository;
 
-    public List<ParkingBoy> getParkingBoys(String name, String gender) {
+    public List<ParkingBoy> getParkingBoys(String name, String gender,String tag) {
         if (name != null) return parkingBoyRepository.findByNameLike("%" + name.trim().toUpperCase() + "%");
         if (gender != null) return parkingBoyRepository.findByGender(gender);
+        if (tag != null) return parkingBoyRepository.findByTagLike("%" + tag.trim().toUpperCase() + "%");
         return parkingBoyRepository.findAllByOrderByBirthYearDesc();
     }
 
