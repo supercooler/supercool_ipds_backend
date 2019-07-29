@@ -16,4 +16,7 @@ public class Constant {
     //Login Need
     public static final String USER_NOT_EXIST = "20001"; // 用户不存在
     public static final String USER_ACCOUNT_ERROR = "20003"; // 用户名或密码错误
+
+    // manager exception
+    public static final String DELETE_NOT_FOUND_EXCEPTION_CODE = "20001";
 }

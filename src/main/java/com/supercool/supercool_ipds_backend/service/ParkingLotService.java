@@ -1,5 +1,6 @@
 package com.supercool.supercool_ipds_backend.service;
 
+import com.supercool.supercool_ipds_backend.common.exception.CustomException;
 import com.supercool.supercool_ipds_backend.model.ParkingLot;
 import com.supercool.supercool_ipds_backend.repository.ParkingLotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+import static com.supercool.supercool_ipds_backend.common.exception.ExceptionEnum.Delete_Not_Found_Exception;
 
 @Service
 public class ParkingLotService {
@@ -33,9 +36,12 @@ public class ParkingLotService {
     }
 
     public void deleteParkingLotById(Long id) {
-        parkingLotRepository.deleteById(id);
+        try {
+            parkingLotRepository.deleteById(id);
+        } catch (Exception e) {
+            throw new CustomException(Delete_Not_Found_Exception.getMessage(), Delete_Not_Found_Exception.getCode());
+        }
     }
-
 
     public List<ParkingLot> getAllParkingLots() {
         return parkingLotRepository.findAll();
