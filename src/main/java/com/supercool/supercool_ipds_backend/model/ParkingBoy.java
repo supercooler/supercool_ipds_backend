@@ -5,6 +5,7 @@ import com.supercool.supercool_ipds_backend.common.utils.DateUtils;
 import javax.persistence.*;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class ParkingBoy {
@@ -25,6 +26,12 @@ public class ParkingBoy {
     private String phone;
 
     private String status = "空闲";
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "parking_boy_id")
+    private List<ParkingLot> parkingLots;
+
+    private String tag;
 
     @Transient
     private int age;
@@ -106,5 +113,21 @@ public class ParkingBoy {
     public void setWorkExperience(int workExperience) {
         this.employeeDate = DateUtils.calculateDate(workExperience);
         this.workExperience = workExperience;
+    }
+
+    public List<ParkingLot> getParkingLots() {
+        return parkingLots;
+    }
+
+    public void setParkingLots(List<ParkingLot> parkingLots) {
+        this.parkingLots = parkingLots;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
     }
 }

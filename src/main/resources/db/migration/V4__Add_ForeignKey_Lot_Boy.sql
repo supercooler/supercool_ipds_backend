@@ -1,0 +1,1 @@
+alter table parking_lot add constraint parking_boy_and_lot foreign key (parking_boy_id) references parking_boy

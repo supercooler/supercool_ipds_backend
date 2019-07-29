@@ -6,6 +6,6 @@ create table parking_boy
     gender        varchar(255) not null,
     name          varchar(255) not null,
     phone         varchar(11),
-    status        varchar(255) not null
-
+    status        varchar(255) not null,
+    tag           varchar(255) not null
 )

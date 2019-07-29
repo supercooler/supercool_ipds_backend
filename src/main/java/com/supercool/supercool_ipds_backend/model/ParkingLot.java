@@ -1,9 +1,8 @@
 package com.supercool.supercool_ipds_backend.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 
 @Entity
 public class ParkingLot {
@@ -17,6 +16,11 @@ public class ParkingLot {
     private int capacity;
 
     private String address;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "parking_boy_id")
+    @JsonIgnore
+    private ParkingBoy parkingBoy;
 
     public Long getId() {
         return id;
@@ -48,5 +52,13 @@ public class ParkingLot {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public ParkingBoy getParkingBoy() {
+        return parkingBoy;
+    }
+
+    public void setParkingBoy(ParkingBoy parkingBoy) {
+        this.parkingBoy = parkingBoy;
     }
 }
