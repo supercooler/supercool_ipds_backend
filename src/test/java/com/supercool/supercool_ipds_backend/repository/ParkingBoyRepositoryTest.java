@@ -57,6 +57,18 @@ public class ParkingBoyRepositoryTest {
         assertEquals("male", parkingBoys.get(0).getGender());
     }
 
+    @Test
+    public void should_return_parking_boy_with_tag_when_call_findAll_given_parking_boy_with_tag() throws ParseException {
+        ParkingBoy parkingBoy = new ParkingBoy();
+        buildParkingLot(parkingBoy);
+        parkingBoy.setBirthYear(new Date());
+        parkingBoy.setEmployeeDate(new Date());
+        parkingBoyRepository.save(parkingBoy);
+        parkingBoyRepository.findAll();
+        List<ParkingBoy> parkingBoys = parkingBoyRepository.findByTagLike("%"+"美丽".trim().toUpperCase()+"%");
+        assertEquals("美丽小姐姐", parkingBoys.get(0).getTag());
+    }
+
     private void buildParkingLot(ParkingBoy parkingBoy) {
         parkingBoy.setId(1L);
         parkingBoy.setName("test");

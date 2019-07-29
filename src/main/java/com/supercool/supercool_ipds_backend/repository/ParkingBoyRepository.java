@@ -13,4 +13,6 @@ public interface ParkingBoyRepository extends JpaRepository<ParkingBoy, Long> {
     @Query(value = "select * from parking_boy where upper(name) like ?1 order by birth_year desc", nativeQuery = true)
     public List<ParkingBoy> findByNameLike(String name);
     public List<ParkingBoy> findByGender(String gender);
+    @Query(value = "select * from parking_boy where upper(tag) like ?1 order by birth_year desc", nativeQuery = true)
+    public List<ParkingBoy> findByTagLike(String tag);
 }
