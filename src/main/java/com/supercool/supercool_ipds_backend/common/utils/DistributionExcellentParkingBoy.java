@@ -6,7 +6,6 @@ import com.supercool.supercool_ipds_backend.repository.ParkingBoyRepository;
 import com.supercool.supercool_ipds_backend.repository.ParkingOrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -14,7 +13,8 @@ import java.util.List;
 @Component
 public class DistributionExcellentParkingBoy {
 
-    private static final int BASE = 500;
+    private static final int PARKING_TIMES_RATE_BASE = 500;
+    private static final double PARKING_ORDER_RATE = 0.001;
 
     @Autowired
     private ParkingOrderRepository parkingOrderRepository;
@@ -29,14 +29,15 @@ public class DistributionExcellentParkingBoy {
         distributionExcellentParkingBoy=this;
     }
 
-    private double calculteParkingBoyScore(double userGivenScore, Long count) {
-        return userGivenScore + count * 1.0 / BASE;
+    private double calculateParkingBoyScore(double userGivenScore, Long count) {
+        System.out.println(Math.random() + PARKING_ORDER_RATE * (userGivenScore + count * 1.0 / PARKING_TIMES_RATE_BASE));
+        return Math.random() + PARKING_ORDER_RATE * (userGivenScore + count * 1.0 / PARKING_TIMES_RATE_BASE);
     }
 
     public ParkingBoy getExcellentParkingBoy(){
         List<ParkingOrderDO> parkingOrderDOs = distributionExcellentParkingBoy.parkingOrderRepository.loadParkingOrderDOs();
         ParkingOrderDO parkingOrderDO = parkingOrderDOs.stream().reduce((a, b) -> {
-            if(calculteParkingBoyScore(a.getScore(), a.getCount()) > calculteParkingBoyScore(b.getScore(), b.getCount()))
+            if(calculateParkingBoyScore(a.getScore(), a.getCount()) > calculateParkingBoyScore(b.getScore(), b.getCount()))
                 return a;
             return b;
         }).orElse(null);

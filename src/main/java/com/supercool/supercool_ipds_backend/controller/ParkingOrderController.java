@@ -1,6 +1,7 @@
 package com.supercool.supercool_ipds_backend.controller;
 
 import com.supercool.supercool_ipds_backend.common.response.ResponseEntityUtil;
+import com.supercool.supercool_ipds_backend.common.utils.DistributionExcellentParkingBoy;
 import com.supercool.supercool_ipds_backend.dto.AppointmentDto;
 import com.supercool.supercool_ipds_backend.service.ParkingOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
