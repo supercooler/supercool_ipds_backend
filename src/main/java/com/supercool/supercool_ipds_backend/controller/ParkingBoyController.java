@@ -17,8 +17,9 @@ public class ParkingBoyController {
 
     @GetMapping
     public ResponseEntity getParkingBoys(@RequestParam(value = "name",required = false) String name,
-                                         @RequestParam(value="gender",required = false)String gender){
-        return ResponseEntityUtil.responseSuccess(parkingBoyService.getParkingBoys(name,gender));
+                                         @RequestParam(value="gender",required = false)String gender,
+                                         @RequestParam(value="tag",required = false)String tag){
+        return ResponseEntityUtil.responseSuccess(parkingBoyService.getParkingBoys(name,gender,tag));
     }
 
     @PutMapping
