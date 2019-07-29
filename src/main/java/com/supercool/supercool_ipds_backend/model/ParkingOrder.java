@@ -35,6 +35,19 @@ public class ParkingOrder {
 
     private double score;
 
+    public ParkingOrder() {
+    }
+
+    public ParkingOrder(Long id, @NotNull String status, @NotNull String carLisenceNumber, ParkingBoy parkingBoy, @NotNull String userPhone, @NotNull String preLocation, double score) {
+        this.id = id;
+        this.status = status;
+        this.carLisenceNumber = carLisenceNumber;
+        this.parkingBoy = parkingBoy;
+        this.userPhone = userPhone;
+        this.preLocation = preLocation;
+        this.score = score;
+    }
+
     public Long getId() {
         return id;
     }
