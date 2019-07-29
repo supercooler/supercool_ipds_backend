@@ -1,13 +1,12 @@
 package com.supercool.supercool_ipds_backend.controller;
 
 import com.supercool.supercool_ipds_backend.common.response.ResponseEntityUtil;
+import com.supercool.supercool_ipds_backend.dto.AppointmentDto;
 import com.supercool.supercool_ipds_backend.service.ParkingOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/parking-orders")
@@ -21,5 +20,10 @@ public class ParkingOrderController {
     public ResponseEntity getParkingOrders(){
         return ResponseEntityUtil.responseSuccess(parkingOrderService.getParkingOrders());
     }
-    
+
+    @PostMapping
+    public ResponseEntity createParkingOrders(@RequestBody AppointmentDto appointmentDto){
+        return ResponseEntityUtil.responseSuccess(parkingOrderService.createParkingOrders(appointmentDto));
+    }
+
 }
