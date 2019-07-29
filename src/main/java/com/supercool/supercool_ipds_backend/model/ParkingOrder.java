@@ -33,7 +33,7 @@ public class ParkingOrder {
     @NotNull
     private String preLocation;
 
-    private int score;
+    private double score;
 
     public Long getId() {
         return id;
@@ -83,11 +83,11 @@ public class ParkingOrder {
         this.preLocation = preLocation;
     }
 
-    public int getScore() {
+    public double getScore() {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(double score) {
         this.score = score;
     }
 }
