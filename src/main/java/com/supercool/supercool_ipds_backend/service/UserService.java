@@ -15,7 +15,7 @@ public class UserService {
 
     public User UserLogin(String userName,String password){
         User user = userRepository.findByUserName(userName);
-        if(user == null){
+        if(user == null) {
             throw new CustomException(ExceptionEnum.User_Not_Exist_Exception.getMessage(),ExceptionEnum.User_Not_Exist_Exception.getCode());
         }
         else{
