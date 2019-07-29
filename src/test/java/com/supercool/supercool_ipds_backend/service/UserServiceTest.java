@@ -1,6 +1,7 @@
 package com.supercool.supercool_ipds_backend.service;
 
 import com.supercool.supercool_ipds_backend.common.exception.CustomException;
+import com.supercool.supercool_ipds_backend.common.utils.MD5Utils;
 import com.supercool.supercool_ipds_backend.model.ParkingLot;
 import com.supercool.supercool_ipds_backend.model.User;
 import com.supercool.supercool_ipds_backend.repository.UserRepository;
@@ -35,7 +36,7 @@ public class UserServiceTest {
 
     @Test
     public void should_return_user_when_call_login() {
-        User user = new User("jerryLi","134679258");
+        User user = new User("jerryLi", MD5Utils.MD5("134679258"));
         user.setId(Long.valueOf(1));
         when(userRepository.findByUserName("jerryLi")).thenReturn(user);
         User result = userService.UserLogin("jerryLi","134679258");

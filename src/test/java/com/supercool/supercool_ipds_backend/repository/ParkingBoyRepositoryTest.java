@@ -63,5 +63,6 @@ public class ParkingBoyRepositoryTest {
         parkingBoy.setPhone("123456");
         parkingBoy.setGender("male");
         parkingBoy.setStatus("busy");
+        parkingBoy.setTag("美丽小姐姐");
     }
 }
