@@ -5,5 +5,6 @@ create table parking_order (
  score double not null,
  status varchar(10) not null,
  user_phone varchar(11) not null,
+ book_time timestamp not null,
  parking_boy_id bigint
 )

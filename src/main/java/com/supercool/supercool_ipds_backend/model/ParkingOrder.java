@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -33,18 +34,22 @@ public class ParkingOrder {
     @NotNull
     private String preLocation;
 
+    @NotNull
+    private Date bookTime;
+
     private double score;
 
     public ParkingOrder() {
     }
 
-    public ParkingOrder(Long id, @NotNull String status, @NotNull String carLisenceNumber, ParkingBoy parkingBoy, @NotNull String userPhone, @NotNull String preLocation, double score) {
+    public ParkingOrder(Long id, @NotNull String status, @NotNull String carLisenceNumber, ParkingBoy parkingBoy, @NotNull String userPhone, @NotNull String preLocation, @NotNull Date bookTime, double score) {
         this.id = id;
         this.status = status;
         this.carLisenceNumber = carLisenceNumber;
         this.parkingBoy = parkingBoy;
         this.userPhone = userPhone;
         this.preLocation = preLocation;
+        this.bookTime = bookTime;
         this.score = score;
     }
 
@@ -102,5 +107,13 @@ public class ParkingOrder {
 
     public void setScore(double score) {
         this.score = score;
+    }
+
+    public Date getBookTime() {
+        return bookTime;
+    }
+
+    public void setBookTime(Date bookTime) {
+        this.bookTime = bookTime;
     }
 }
