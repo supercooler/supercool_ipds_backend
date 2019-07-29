@@ -39,6 +39,20 @@ public class ParkingBoy {
     @Transient
     private int workExperience;
 
+    public ParkingBoy() {
+    }
+
+    public ParkingBoy(Long id, String name, Date birthYear, String gender, Date employeeDate, String phone, String status, String tag) {
+        this.id = id;
+        this.name = name;
+        this.birthYear = birthYear;
+        this.gender = gender;
+        this.employeeDate = employeeDate;
+        this.phone = phone;
+        this.status = status;
+        this.tag = tag;
+    }
+
     public Long getId() {
         return id;
     }
