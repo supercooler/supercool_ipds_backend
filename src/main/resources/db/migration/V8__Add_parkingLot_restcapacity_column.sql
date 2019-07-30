@@ -1,0 +1,1 @@
+ALTER TABLE parking_lot ADD COLUMN rest_capacity VARCHAR(255) NOT NULL;
