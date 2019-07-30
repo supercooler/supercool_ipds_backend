@@ -2,6 +2,7 @@ package com.supercool.supercool_ipds_backend.service;
 
 import com.supercool.supercool_ipds_backend.common.exception.CustomException;
 import com.supercool.supercool_ipds_backend.common.utils.MD5Utils;
+import com.supercool.supercool_ipds_backend.dto.LoginUserDto;
 import com.supercool.supercool_ipds_backend.model.ParkingLot;
 import com.supercool.supercool_ipds_backend.model.User;
 import com.supercool.supercool_ipds_backend.repository.UserRepository;
@@ -36,20 +37,21 @@ public class UserServiceTest {
 
     @Test
     public void should_return_user_when_call_login() {
-        User user = new User("jerryLi", MD5Utils.MD5("134679258"));
+        LoginUserDto loginUser = new LoginUserDto("jerryLi", "123456");
+        User user = new User("jerryLi", MD5Utils.MD5("123456"),"super");
         user.setId(Long.valueOf(1));
         when(userRepository.findByUserName("jerryLi")).thenReturn(user);
-        User result = userService.UserLogin("jerryLi","134679258");
+        User result = userService.UserLogin(loginUser);
         verify(userRepository,times(1)).findByUserName("jerryLi");
-        assertEquals(user.getId(),result.getId());
+        assertEquals("super",result.getRole());
     }
 
     @Test
-    public void should_return_exception_when_call_login_given_null() {
-        User user = null;
-        when(userRepository.findByUserName("jerryLi")).thenReturn(user);
-        assertThrows(CustomException.class,()->userService.UserLogin("jerryLi","134679258"));
-        verify(userRepository,times(1)).findByUserName("jerryLi");
-
+    public void should_return_user_when_call_register() {
+        User user = new User("jerryLi", MD5Utils.MD5("123456"),"super");
+        when(userRepository.findByUserName("jerryLi")).thenReturn(null);
+        when(userRepository.save(user)).thenReturn(user);
+        User result = userService.UserRegister(user);
+        assertEquals("super",result.getRole());
     }
 }

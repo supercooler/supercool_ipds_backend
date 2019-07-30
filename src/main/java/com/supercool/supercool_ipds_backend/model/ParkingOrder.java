@@ -27,6 +27,10 @@ public class ParkingOrder {
     @JoinColumn(name = "parking_boy_id")
     private ParkingBoy parkingBoy;
 
+    @ManyToOne
+    @JoinColumn(name = "parking_lot_id")
+    private ParkingLot parkingLot;
+
     @NotNull
     @Column(length = 11)
     private String userPhone;
@@ -53,6 +57,8 @@ public class ParkingOrder {
         this.bookTime = bookTime;
         this.score = score;
     }
+
+
 
     public Long getId() {
         return id;
@@ -116,5 +122,13 @@ public class ParkingOrder {
 
     public void setBookTime(Date bookTime) {
         this.bookTime = bookTime;
+    }
+
+    public ParkingLot getParkingLot() {
+        return parkingLot;
+    }
+
+    public void setParkingLot(ParkingLot parkingLot) {
+        this.parkingLot = parkingLot;
     }
 }

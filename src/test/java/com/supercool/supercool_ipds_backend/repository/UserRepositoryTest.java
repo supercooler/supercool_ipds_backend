@@ -23,11 +23,10 @@ public class UserRepositoryTest {
 
     @Test
     public void should_return_user_with_when_call_findBuyUserName() throws ParseException {
-        User user = new User("jerry","134679258");
+        User user = new User("jerry","134679258","super");
         user.setId(Long.valueOf(1));
         userRepository.save(user);
         User result = userRepository.findByUserName("jerry");
         assertEquals(result.getPassword(),user.getPassword());
     }
-
 }

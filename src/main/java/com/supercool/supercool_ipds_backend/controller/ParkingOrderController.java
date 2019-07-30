@@ -19,8 +19,11 @@ public class ParkingOrderController {
     private ParkingOrderService parkingOrderService;
 
     @GetMapping
-    public ResponseEntity getParkingOrders(){
-        return ResponseEntityUtil.responseSuccess(parkingOrderService.getParkingOrders());
+    public ResponseEntity getParkingOrders(
+            @RequestParam(value = "status",required = false,defaultValue = "") String status,
+            @RequestParam(value = "boy",required = false,defaultValue = "") String boy,
+            @RequestParam(value = "lot",required = false,defaultValue = "") String lot){
+        return ResponseEntityUtil.responseSuccess(parkingOrderService.getParkingOrders(status,boy,lot));
     }
 
     @PostMapping

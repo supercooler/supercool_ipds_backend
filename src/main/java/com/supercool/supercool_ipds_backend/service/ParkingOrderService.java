@@ -27,8 +27,23 @@ public class ParkingOrderService {
     @Autowired
     private ParkingBoyRepository parkingBoyRepository;
 
-    public List<ParkingOrder> getParkingOrders() {
-        return parkingOrderRepository.findAll();
+    public List<ParkingOrder> getParkingOrders(String status,String boy,String lot) {
+        if(status.equalsIgnoreCase("")){
+            if (boy.equalsIgnoreCase("")){
+                if (lot.equalsIgnoreCase("")){
+                    return parkingOrderRepository.findAll();
+                }
+                else {
+                    return parkingOrderRepository.findByLot("%" + lot.trim() + "%");
+                }
+            }
+            else {
+                return parkingOrderRepository.findByBoy("%" + boy.trim() + "%");
+            }
+        }
+        else{
+            return parkingOrderRepository.findAllByStatus(status);
+        }
     }
 
     public ParkingOrder createParkingOrders(AppointmentDto appointmentDto) {

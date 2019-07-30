@@ -15,6 +15,8 @@ public class ParkingLot {
 
     private int capacity;
 
+    private int restCapacity;
+
     private String address;
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -45,6 +47,10 @@ public class ParkingLot {
     public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
+
+    public int getRestCapacity() { return restCapacity; }
+
+    public void setRestCapacity(int restCapacity) { this.restCapacity = restCapacity; }
 
     public String getAddress() {
         return address;
