@@ -2,6 +2,7 @@ package com.supercool.supercool_ipds_backend.common.utils;
 
 import com.supercool.supercool_ipds_backend.DomainObject.ParkingOrderDO;
 import com.supercool.supercool_ipds_backend.model.ParkingBoy;
+import com.supercool.supercool_ipds_backend.model.ParkingOrder;
 import com.supercool.supercool_ipds_backend.repository.ParkingBoyRepository;
 import com.supercool.supercool_ipds_backend.repository.ParkingOrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,16 +37,18 @@ public class DistributionExcellentParkingBoy {
 
     public ParkingBoy getExcellentParkingBoy() {
         //parking boy table is null
-        boolean isParkingBoyTableEmpty = distributionExcellentParkingBoy.parkingBoyRepository.findAll() == null || distributionExcellentParkingBoy.parkingBoyRepository.findAll().size() == 0;
+        List<ParkingBoy> parkingBoys = distributionExcellentParkingBoy.parkingBoyRepository.findAll();
+        boolean isParkingBoyTableEmpty = parkingBoys == null || parkingBoys.size() == 0;
         if (isParkingBoyTableEmpty) return null;
 
         //parking order table is null
-        boolean isParkingOrderTableEmpty = distributionExcellentParkingBoy.parkingOrderRepository.findAll() == null || distributionExcellentParkingBoy.parkingOrderRepository.findAll().size() == 0;
-        if (isParkingOrderTableEmpty) return distributionExcellentParkingBoy.parkingBoyRepository.findAll().get(0);
+        List<ParkingOrder> parkingOrders = distributionExcellentParkingBoy.parkingOrderRepository.findAll();
+        boolean isParkingOrderTableEmpty = parkingOrders == null || parkingOrders.size() == 0;
+        if (isParkingOrderTableEmpty) return parkingBoys.get((int)Math.random()*parkingBoys.size());
 
         //parking boy and order table is not null
         List<ParkingOrderDO> parkingOrderDOs = distributionExcellentParkingBoy.parkingOrderRepository.loadParkingOrderDOs();
-        if (parkingOrderDOs.isEmpty()) return distributionExcellentParkingBoy.parkingBoyRepository.findAll().get(0);
+        if (parkingOrderDOs.isEmpty()) return null;
         ParkingOrderDO parkingOrderDO = parkingOrderDOs.stream().reduce((a, b) -> {
             if (calculateParkingBoyScore(a.getScore(), a.getCount()) > calculateParkingBoyScore(b.getScore(), b.getCount()))
                 return a;
