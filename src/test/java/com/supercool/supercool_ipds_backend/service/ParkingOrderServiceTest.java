@@ -47,10 +47,6 @@ public class ParkingOrderServiceTest {
         when(parkingOrderRepository.findByUser(1L)).thenReturn(new ArrayList<>());
         parkingOrderService.getOrdersByUserId(1L);
         verify(parkingOrderRepository,times(1)).findByUser(1L);
-
-        when(parkingOrderRepository.findByParkingBoy("jerryLi")).thenReturn(new ArrayList<>());
-        parkingOrderService.getOrdersByParkingBoy("jerryLi");
-        verify(parkingOrderRepository,times(1)).findByParkingBoy("jerryLi");
     }
 
     @Test
