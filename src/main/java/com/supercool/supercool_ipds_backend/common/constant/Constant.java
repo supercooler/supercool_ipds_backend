@@ -26,11 +26,15 @@ public class Constant {
     public static final String ROLE_USER_SUPER_MANAGER = "ROLE_SUPER_MANAGER";
     public static final String ROLE_USER_PARKING_BOY = "ROLE_USER_PARKING_BOY";
 
-    // parking order statu
+    // parking order status
     public static final String HAD_ORDERED = "已下单";
     public static final String HAD_DISPATCHED = "已配单";
     public static final String HAD_CAR_STOPED = "已停车";
     public static final String IN_FETCHING_CAR = "取车中";
     public static final String WILL_BE_CONFIRMED = "待确认";
     public static final String FINISH_FETCHING = "已完成";
+
+    // parking boy status
+    public static final String BOY_BUSY = "忙碌";
+    public static final String BOY_EASY = "空闲";
 }

@@ -87,7 +87,23 @@ public class ParkingOrderService {
 
     public ParkingOrder updateParkingOrder(ParkingOrder parkingOrder) {
         try {
-            parkingOrder.setStatus(Constant.IN_FETCHING_CAR);
+            String status = parkingOrder.getStatus();
+            switch (status){
+                //已下单
+                case Constant.HAD_ORDERED:
+                    //已停车
+                case Constant.HAD_CAR_STOPED:
+//待确认
+                case Constant.WILL_BE_CONFIRMED:
+//已完成
+                case Constant.FINISH_FETCHING:
+                    updateParkingBoy(parkingOrder,Constant.BOY_EASY);break;//员工闲
+                //已配单
+                case Constant.HAD_DISPATCHED:
+//取车中
+                case Constant.IN_FETCHING_CAR:
+                    updateParkingBoy(parkingOrder,Constant.BOY_BUSY);break;//员工忙碌
+            }
             return parkingOrderRepository.save(parkingOrder);
         } catch (Exception e) {
             throw new CustomException(Update_Not_Fount_Exception.getMessage(), Update_Not_Fount_Exception.getCode());
@@ -108,5 +124,12 @@ public class ParkingOrderService {
 
     public ParkingOrder getOrderById(Long id) {
         return parkingOrderRepository.findById(id).orElse(null);
+    }
+
+    private void updateParkingBoy(ParkingOrder parkingOrder,String status){
+        //修改ParkingBoy的状态
+        ParkingBoy parkingBoy = parkingOrder.getParkingBoy();
+        parkingBoy.setStatus(status);
+        parkingBoyRepository.save(parkingBoy);
     }
 }
