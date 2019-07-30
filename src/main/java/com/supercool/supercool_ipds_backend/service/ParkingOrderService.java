@@ -1,5 +1,6 @@
 package com.supercool.supercool_ipds_backend.service;
 
+import com.supercool.supercool_ipds_backend.common.constant.Constant;
 import com.supercool.supercool_ipds_backend.common.utils.DistributionExcellentParkingBoy;
 import com.supercool.supercool_ipds_backend.dto.AppointmentDto;
 import com.supercool.supercool_ipds_backend.common.exception.CustomException;
@@ -12,8 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static com.supercool.supercool_ipds_backend.common.exception.ExceptionEnum.Delete_Not_Found_Exception;
-import static com.supercool.supercool_ipds_backend.common.exception.ExceptionEnum.Parking_Boy_Busy_Exception;
+import static com.supercool.supercool_ipds_backend.common.exception.ExceptionEnum.*;
 
 @Service
 public class ParkingOrderService {
@@ -82,6 +82,15 @@ public class ParkingOrderService {
             parkingOrderRepository.deleteById(id);
         } catch (Exception e) {
             throw new CustomException(Delete_Not_Found_Exception.getMessage(), Delete_Not_Found_Exception.getCode());
+        }
+    }
+
+    public ParkingOrder updateParkingOrder(ParkingOrder parkingOrder) {
+        try {
+            parkingOrder.setStatus(Constant.IN_FETCHING_CAR);
+            return parkingOrderRepository.save(parkingOrder);
+        } catch (Exception e) {
+            throw new CustomException(Update_Not_Fount_Exception.getMessage(), Update_Not_Fount_Exception.getCode());
         }
     }
 
