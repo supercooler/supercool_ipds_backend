@@ -1,8 +1,6 @@
 package com.supercool.supercool_ipds_backend.service;
 
-import com.supercool.supercool_ipds_backend.common.exception.ExceptionEnum;
 import com.supercool.supercool_ipds_backend.common.utils.DistributionExcellentParkingBoy;
-import com.supercool.supercool_ipds_backend.config.WebSocket;
 import com.supercool.supercool_ipds_backend.dto.AppointmentDto;
 import com.supercool.supercool_ipds_backend.common.exception.CustomException;
 import com.supercool.supercool_ipds_backend.model.ParkingBoy;
@@ -12,8 +10,6 @@ import com.supercool.supercool_ipds_backend.repository.ParkingOrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import static com.supercool.supercool_ipds_backend.common.exception.ExceptionEnum.Delete_Not_Found_Exception;
@@ -31,16 +27,12 @@ public class ParkingOrderService {
     @Autowired
     private ParkingBoyRepository parkingBoyRepository;
 
-    @Autowired
-    WebSocket webSocket;
-
     public List<ParkingOrder> getParkingOrders() {
         return parkingOrderRepository.findAll();
     }
 
     public ParkingOrder createParkingOrders(AppointmentDto appointmentDto) {
         ParkingOrder parkingOrder = generateParkingOrder(appointmentDto);
-        webSocket.sendAllMessage("createOrder");
         return parkingOrderRepository.save(parkingOrder);
     }
 
