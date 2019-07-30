@@ -25,8 +25,8 @@ public class DistributionExcellentParkingBoy {
     private static DistributionExcellentParkingBoy distributionExcellentParkingBoy;
 
     @PostConstruct
-    public void init(){
-        distributionExcellentParkingBoy=this;
+    public void init() {
+        distributionExcellentParkingBoy = this;
     }
 
     private double calculateParkingBoyScore(double userGivenScore, Long count) {
@@ -34,19 +34,20 @@ public class DistributionExcellentParkingBoy {
         return Math.random() + PARKING_ORDER_RATE * (userGivenScore + count * 1.0 / PARKING_TIMES_RATE_BASE);
     }
 
-    public ParkingBoy getExcellentParkingBoy(){
+    public ParkingBoy getExcellentParkingBoy() {
         //parking boy table is null
         boolean isParkingBoyTableEmpty = distributionExcellentParkingBoy.parkingBoyRepository.findAll() == null || distributionExcellentParkingBoy.parkingBoyRepository.findAll().size() == 0;
-        if(isParkingBoyTableEmpty) return null;
+        if (isParkingBoyTableEmpty) return null;
 
         //parking order table is null
         boolean isParkingOrderTableEmpty = distributionExcellentParkingBoy.parkingOrderRepository.findAll() == null || distributionExcellentParkingBoy.parkingOrderRepository.findAll().size() == 0;
-        if(isParkingOrderTableEmpty) return distributionExcellentParkingBoy.parkingBoyRepository.findAll().get(0);
+        if (isParkingOrderTableEmpty) return distributionExcellentParkingBoy.parkingBoyRepository.findAll().get(0);
 
         //parking boy and order table is not null
         List<ParkingOrderDO> parkingOrderDOs = distributionExcellentParkingBoy.parkingOrderRepository.loadParkingOrderDOs();
+        if (parkingOrderDOs.isEmpty()) return distributionExcellentParkingBoy.parkingBoyRepository.findAll().get(0);
         ParkingOrderDO parkingOrderDO = parkingOrderDOs.stream().reduce((a, b) -> {
-            if(calculateParkingBoyScore(a.getScore(), a.getCount()) > calculateParkingBoyScore(b.getScore(), b.getCount()))
+            if (calculateParkingBoyScore(a.getScore(), a.getCount()) > calculateParkingBoyScore(b.getScore(), b.getCount()))
                 return a;
             return b;
         }).orElse(null);
