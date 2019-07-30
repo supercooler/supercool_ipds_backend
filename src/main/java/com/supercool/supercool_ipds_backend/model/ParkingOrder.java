@@ -1,5 +1,6 @@
 package com.supercool.supercool_ipds_backend.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -24,7 +25,6 @@ public class ParkingOrder {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "parking_boy_id")
-    @JsonIgnore
     private ParkingBoy parkingBoy;
 
     @NotNull
@@ -35,6 +35,7 @@ public class ParkingOrder {
     private String preLocation;
 
     @NotNull
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date bookTime;
 
     private double score;
