@@ -97,4 +97,8 @@ public class ParkingOrderService {
     public List<ParkingOrder> getOrdersByUserId(Long id) {
         return parkingOrderRepository.findByUser(id);
     }
+
+    public List<ParkingOrder> getOrdersByParkingBoy(String parkingBoyName) {
+        return parkingOrderRepository.findByParkingBoy(parkingBoyName);
+    }
 }

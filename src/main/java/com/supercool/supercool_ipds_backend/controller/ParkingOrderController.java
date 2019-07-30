@@ -32,6 +32,11 @@ public class ParkingOrderController {
         return ResponseEntityUtil.responseSuccess(parkingOrderService.getOrdersByUserId(id));
     }
 
+    @GetMapping
+    public ResponseEntity getOrdersByParkingBoy(@RequestParam(value = "parkingBoyName") String parkingBoyName){
+        return ResponseEntityUtil.responseSuccess(parkingOrderService.getOrdersByParkingBoy(parkingBoyName));
+    }
+
     @PostMapping
     public ResponseEntity createParkingOrders(@RequestBody AppointmentDto appointmentDto) {
         return ResponseEntityUtil.responseSuccess(parkingOrderService.createParkingOrders(appointmentDto));

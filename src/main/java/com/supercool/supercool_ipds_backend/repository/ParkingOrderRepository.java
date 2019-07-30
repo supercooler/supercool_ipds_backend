@@ -27,4 +27,7 @@ public interface ParkingOrderRepository extends JpaRepository<ParkingOrder, Long
     void deleteById(Long id);
 
     List<ParkingOrder> findAllByStatus(String status);
+
+    @Query(value = "select po.* from parking_order po left join parking_boy pb on (po.parking_boy_id = pb.id) where pb.name = ?1", nativeQuery = true)
+    List<ParkingOrder> findByParkingBoy(String parkingBoyName);
 }
