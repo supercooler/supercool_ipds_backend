@@ -101,4 +101,8 @@ public class ParkingOrderService {
     public List<ParkingOrder> getOrdersByParkingBoy(String parkingBoyName) {
         return parkingOrderRepository.findByParkingBoy(parkingBoyName);
     }
+
+    public ParkingOrder getOrderById(Long id) {
+        return parkingOrderRepository.findById(id).orElse(null);
+    }
 }

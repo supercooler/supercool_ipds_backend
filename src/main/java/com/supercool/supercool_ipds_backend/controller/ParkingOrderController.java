@@ -27,9 +27,14 @@ public class ParkingOrderController {
         return ResponseEntityUtil.responseSuccess(parkingOrderService.getParkingOrders(status, boy, lot));
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/user/{id}")
     public ResponseEntity getOrdersByUser(@PathVariable("id") Long id){
         return ResponseEntityUtil.responseSuccess(parkingOrderService.getOrdersByUserId(id));
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity getOrdersById(@PathVariable("id") Long id){
+        return ResponseEntityUtil.responseSuccess(parkingOrderService.getOrderById(id));
     }
 
     @GetMapping(params = "parkingBoyName")
