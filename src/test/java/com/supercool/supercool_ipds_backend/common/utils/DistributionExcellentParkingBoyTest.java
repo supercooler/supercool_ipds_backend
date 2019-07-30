@@ -16,6 +16,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,6 +54,19 @@ public class DistributionExcellentParkingBoyTest {
         ParkingBoy parkingBoy1 = new DistributionExcellentParkingBoy().getExcellentParkingBoy();
 
         assertEquals(parkingBoy.getId(), parkingBoy1.getId());
+    }
+
+    @Test
+    public void should_return_null_when_call_getExcellentParkingBoy_given_parking_boy_table_is_null() {
+        when(parkingBoyRepository.findAll()).thenReturn(null);
+        assertNull(new DistributionExcellentParkingBoy().getExcellentParkingBoy());
+    }
+
+    @Test
+    public void should_return_parking_boy_when_call_getExcellentParkingBoy_given_parking_order_table_is_null() {
+        ParkingBoy parkingBoy = new ParkingBoy();
+        when(parkingBoyRepository.findAll()).thenReturn(Arrays.asList(parkingBoy));
+        assertNotNull(new DistributionExcellentParkingBoy().getExcellentParkingBoy());
     }
 
 }

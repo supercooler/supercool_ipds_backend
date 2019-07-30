@@ -35,6 +35,15 @@ public class DistributionExcellentParkingBoy {
     }
 
     public ParkingBoy getExcellentParkingBoy(){
+        //parking boy table is null
+        boolean isParkingBoyTableEmpty = distributionExcellentParkingBoy.parkingBoyRepository.findAll() == null || distributionExcellentParkingBoy.parkingBoyRepository.findAll().size() == 0;
+        if(isParkingBoyTableEmpty) return null;
+
+        //parking order table is null
+        boolean isParkingOrderTableEmpty = distributionExcellentParkingBoy.parkingOrderRepository.findAll() == null || distributionExcellentParkingBoy.parkingOrderRepository.findAll().size() == 0;
+        if(isParkingOrderTableEmpty) return distributionExcellentParkingBoy.parkingBoyRepository.findAll().get(0);
+
+        //parking boy and order table is not null
         List<ParkingOrderDO> parkingOrderDOs = distributionExcellentParkingBoy.parkingOrderRepository.loadParkingOrderDOs();
         ParkingOrderDO parkingOrderDO = parkingOrderDOs.stream().reduce((a, b) -> {
             if(calculateParkingBoyScore(a.getScore(), a.getCount()) > calculateParkingBoyScore(b.getScore(), b.getCount()))
