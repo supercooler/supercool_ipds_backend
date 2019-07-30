@@ -3,6 +3,7 @@ package com.supercool.supercool_ipds_backend.repository;
 import com.supercool.supercool_ipds_backend.DomainObject.ParkingOrderDO;
 import com.supercool.supercool_ipds_backend.model.ParkingOrder;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public interface ParkingOrderRepository extends JpaRepository<ParkingOrder, Long
     @Query(value = "select po.* from parking_order po left join user u on (po.parking_lot_id = u.id) where u.id = ?1", nativeQuery = true)
     List<ParkingOrder> findByUser(Long id);
 
+    @Modifying
     @Query(value = "delete from parking_order where id = ?1", nativeQuery = true)
     void deleteById(Long id);
 
