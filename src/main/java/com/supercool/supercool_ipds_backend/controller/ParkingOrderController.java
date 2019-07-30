@@ -37,9 +37,14 @@ public class ParkingOrderController {
         return ResponseEntityUtil.responseSuccess(parkingOrderService.getOrderById(id));
     }
 
-    @GetMapping(params = "parkingBoyName")
-    public ResponseEntity getOrdersByParkingBoy(@RequestParam String parkingBoyName){
-        return ResponseEntityUtil.responseSuccess(parkingOrderService.getOrdersByParkingBoy(parkingBoyName));
+    @GetMapping(value = "/fetch",params = "parkingBoyName")
+    public ResponseEntity getOrdersByParkingBoyFetch(@RequestParam String parkingBoyName){
+        return ResponseEntityUtil.responseSuccess(parkingOrderService.getOrdersByParkingBoy(parkingBoyName,"fetch"));
+    }
+
+    @GetMapping(value = "/park",params = "parkingBoyName")
+    public ResponseEntity getOrdersByParkingBoyPark(@RequestParam String parkingBoyName){
+        return ResponseEntityUtil.responseSuccess(parkingOrderService.getOrdersByParkingBoy(parkingBoyName,"park"));
     }
 
     @PostMapping

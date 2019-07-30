@@ -98,8 +98,12 @@ public class ParkingOrderService {
         return parkingOrderRepository.findByUser(id);
     }
 
-    public List<ParkingOrder> getOrdersByParkingBoy(String parkingBoyName) {
-        return parkingOrderRepository.findByParkingBoy(parkingBoyName);
+    public List<ParkingOrder> getOrdersByParkingBoy(String parkingBoyName,String type) {
+        switch (type){
+            case "fetch":return parkingOrderRepository.findByParkingBoyFetch(parkingBoyName);
+            case "park":return parkingOrderRepository.findByParkingBoyPark(parkingBoyName);
+        }
+        return null;
     }
 
     public ParkingOrder getOrderById(Long id) {
