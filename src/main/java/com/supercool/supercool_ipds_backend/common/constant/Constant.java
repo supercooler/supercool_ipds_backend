@@ -19,4 +19,9 @@ public class Constant {
 
     // manager exception
     public static final String DELETE_NOT_FOUND_EXCEPTION_CODE = "20001";
+
+    public static final String ROLE_USER_CUSTOMER = "ROLE_CUSTOMER";
+    public static final String ROLE_USER_SUPER_MANAGER = "ROLE_SUPER_MANAGER";
+    public static final String ROLE_USER_PARKING_BOY = "ROLE_USER_PARKING_BOY";
+
 }
