@@ -31,6 +31,10 @@ public class ParkingOrder {
     @JoinColumn(name = "parking_lot_id")
     private ParkingLot parkingLot;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     @NotNull
     @Column(length = 11)
     private String userPhone;
@@ -130,5 +134,13 @@ public class ParkingOrder {
 
     public void setParkingLot(ParkingLot parkingLot) {
         this.parkingLot = parkingLot;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

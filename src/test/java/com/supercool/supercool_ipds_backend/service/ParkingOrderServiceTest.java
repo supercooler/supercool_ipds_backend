@@ -43,6 +43,10 @@ public class ParkingOrderServiceTest {
         when(parkingOrderRepository.findByLot("%南%")).thenReturn(new ArrayList<>());
         parkingOrderService.getParkingOrders("","","南");
         verify(parkingOrderRepository,times(1)).findByLot("%南%");
+
+        when(parkingOrderRepository.findByUser(1L)).thenReturn(new ArrayList<>());
+        parkingOrderService.getOrdersByUserId(1L);
+        verify(parkingOrderRepository,times(1)).findByUser(1L);
     }
 
     @Test

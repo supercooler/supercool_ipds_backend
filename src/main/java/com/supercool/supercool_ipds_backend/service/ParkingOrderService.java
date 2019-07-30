@@ -84,4 +84,8 @@ public class ParkingOrderService {
             throw new CustomException(Delete_Not_Found_Exception.getMessage(), Delete_Not_Found_Exception.getCode());
         }
     }
+
+    public List<ParkingOrder> getOrdersByUserId(Long id) {
+        return parkingOrderRepository.findByUser(id);
+    }
 }
