@@ -19,7 +19,7 @@ public interface ParkingOrderRepository extends JpaRepository<ParkingOrder, Long
     @Query(value = "select po.* from parking_order po left join parking_lot pl on (po.parking_lot_id = pl.id) where pl.name like ?1", nativeQuery = true)
     List<ParkingOrder> findByLot(String info);
 
-    @Query(value = "select po.* from parking_order po left join user u on (po.parking_lot_id = u.id) where u.id = ?1", nativeQuery = true)
+    @Query(value = "select po.* from parking_order po left join user u on (po.user_id = u.id) where u.id = ?1", nativeQuery = true)
     List<ParkingOrder> findByUser(Long id);
 
     @Modifying
@@ -28,6 +28,6 @@ public interface ParkingOrderRepository extends JpaRepository<ParkingOrder, Long
 
     List<ParkingOrder> findAllByStatus(String status);
 
-    @Query(value = "select po.* from parking_order po left join parking_boy pb on (po.parking_boy_id = pb.id) where pb.name = ?1", nativeQuery = true)
+    @Query(value = "select po.* from parking_order po left join user u on (po.user_id = u.id) where u.name = ?1", nativeQuery = true)
     List<ParkingOrder> findByParkingBoy(String parkingBoyName);
 }
