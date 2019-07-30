@@ -29,8 +29,20 @@ public class ParkingOrderServiceTest {
     @Test
     public void should_return_true_size_when_call_get_orders(){
         when(parkingOrderRepository.findAll()).thenReturn(new ArrayList<>());
-        parkingOrderService.getParkingOrders();
+        parkingOrderService.getParkingOrders("","","");
         verify(parkingOrderRepository,times(1)).findAll();
+
+        when(parkingOrderRepository.findAllByStatus("已下单")).thenReturn(new ArrayList<>());
+        parkingOrderService.getParkingOrders("已下单","","");
+        verify(parkingOrderRepository,times(1)).findAllByStatus("已下单");
+
+        when(parkingOrderRepository.findByBoy("%张%")).thenReturn(new ArrayList<>());
+        parkingOrderService.getParkingOrders("","张","");
+        verify(parkingOrderRepository,times(1)).findByBoy("%张%");
+
+        when(parkingOrderRepository.findByLot("%南%")).thenReturn(new ArrayList<>());
+        parkingOrderService.getParkingOrders("","","南");
+        verify(parkingOrderRepository,times(1)).findByLot("%南%");
     }
 
     @Test
