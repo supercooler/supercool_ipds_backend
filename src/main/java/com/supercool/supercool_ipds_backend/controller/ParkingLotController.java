@@ -55,4 +55,9 @@ public class ParkingLotController {
         return ResponseEntityUtil.responseSuccess(parkingLotService.getAllParkingLots());
     }
 
+    @GetMapping("/management")
+    public ResponseEntity getAllManagementParkingLot(){
+        return ResponseEntityUtil.responseSuccess(parkingLotService.getAllManagementParkingLots());
+    }
+
 }

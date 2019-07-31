@@ -52,4 +52,8 @@ public class ParkingLotService {
     public List<ParkingLot> getParkingLotsByBoy(String parkingBoyName) {
         return parkingLotRepository.findByParkingBoy(parkingBoyName);
     }
+
+    public List<ParkingLot> getAllManagementParkingLots() {
+        return parkingLotRepository.findAllManagementParkingLots();
+    }
 }

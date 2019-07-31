@@ -19,11 +19,6 @@ public class ParkingLot {
 
     private String address;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "parking_boy_id")
-    @JsonIgnore
-    private ParkingBoy parkingBoy;
-
     public Long getId() {
         return id;
     }
@@ -60,11 +55,4 @@ public class ParkingLot {
         this.address = address;
     }
 
-    public ParkingBoy getParkingBoy() {
-        return parkingBoy;
-    }
-
-    public void setParkingBoy(ParkingBoy parkingBoy) {
-        this.parkingBoy = parkingBoy;
-    }
 }
