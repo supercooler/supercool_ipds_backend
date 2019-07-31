@@ -1,5 +1,7 @@
 package com.supercool.supercool_ipds_backend.dto;
 
+import com.supercool.supercool_ipds_backend.model.User;
+
 import java.util.Date;
 
 public class AppointmentDto {
@@ -8,6 +10,7 @@ public class AppointmentDto {
     private String phone;
     private String address;
     private Date bookTime;
+    private User user;
 
     public String getPlateNumber() {
         return plateNumber;
@@ -39,5 +42,13 @@ public class AppointmentDto {
 
     public void setBookTime(Date bookTime) {
         this.bookTime = bookTime;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

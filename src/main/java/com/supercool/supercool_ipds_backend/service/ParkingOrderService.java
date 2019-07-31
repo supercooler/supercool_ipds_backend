@@ -55,25 +55,18 @@ public class ParkingOrderService {
         ParkingBoy parkingBoy = distributionExcellentParkingBoy.getExcellentParkingBoy();
         if (parkingBoy!=null) {
             ParkingOrder parkingOrder = new ParkingOrder();
+            parkingOrder.setUser(appointmentDto.getUser());
             parkingOrder.setCarLisenceNumber(appointmentDto.getPlateNumber());
             parkingOrder.setPreLocation(appointmentDto.getAddress());
             parkingOrder.setUserPhone(appointmentDto.getPhone());
             parkingOrder.setBookTime(appointmentDto.getBookTime());
+            parkingOrder.setStatus(Constant.HAD_DISPATCHED);
+            parkingBoy.setStatus(Constant.BOY_BUSY);
             parkingOrder.setParkingBoy(parkingBoy);
             return parkingOrder;
         }else{
             throw new CustomException(Parking_Boy_Busy_Exception.getMessage(), Parking_Boy_Busy_Exception.getCode());
         }
-
-//        ParkingOrder parkingOrder = new ParkingOrder();
-////        parkingOrder.setParkingBoy(distributionExcellentParkingBoy.getExcellentParkingBoy());
-//        ParkingBoy parkingBoy = parkingBoyRepository.findById(1L).orElse(new ParkingBoy());
-//        parkingOrder.setCarLisenceNumber(appointmentDto.getPlateNumber());
-//        parkingOrder.setPreLocation(appointmentDto.getAddress());
-//        parkingOrder.setUserPhone(appointmentDto.getPhone());
-//        parkingOrder.setBookTime(appointmentDto.getBookTime());
-//        parkingOrder.setParkingBoy(parkingBoy);
-//        return parkingOrder;
 
     }
 
