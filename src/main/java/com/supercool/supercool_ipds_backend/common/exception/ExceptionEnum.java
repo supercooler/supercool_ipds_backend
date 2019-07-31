@@ -14,7 +14,10 @@ public enum ExceptionEnum {
     User_Account_Error_Exception(Constant.USER_ACCOUNT_ERROR,"用户名与密码错误，请联系管理员。"),
     Delete_Not_Found_Exception(Constant.DELETE_NOT_FOUND_EXCEPTION_CODE,"删除对象不存在！"),
     Parking_Boy_Busy_Exception(Constant.DELETE_NOT_FOUND_EXCEPTION_CODE,"停车员正忙！"),
-    Update_Not_Fount_Exception(Constant.UPDATE_NOT_FOUND_EXCEPTION_CODE,"更新对象不存在！");
+    Update_Not_Fount_Exception(Constant.UPDATE_NOT_FOUND_EXCEPTION_CODE,"更新对象不存在！"),
+    Parking_Boy_Not_Exist_Exception(Constant.BOY_NOT_EXIST_CODE,"没有停车员"),
+    ALL_PARKING_LOTS_REST_CAPACITY_IS_ZERO(Constant.REST_CAPACITY_ZERO_CODE,"无可用停车场"),
+    SHOULD_INPUT_VALID_PARKING_ORDER(Constant.INVALID_PARKING_ORDER,"此订单无效");
 
     private String code;
     private String message;
