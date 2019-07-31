@@ -35,19 +35,18 @@ test {
 }
 
 dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-websocket', version: '2.0.4.RELEASE'
+
     compile('org.flywaydb:flyway-core')
     compile 'mysql:mysql-connector-java'
-    implementation('org.springframework.boot:spring-boot-starter-data-jpa')
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-   
     compile 'com.h2database:h2'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
     testCompile group: 'org.junit.platform', name: 'junit-platform-launcher', version: '1.2.0'
     testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.2.0'
     testCompile group: 'org.junit.vintage', name: 'junit-vintage-engine', version: '5.2.0'
-
-
 }
 flyway {
     url = 'jdbc:mysql://scurl/scdev'
