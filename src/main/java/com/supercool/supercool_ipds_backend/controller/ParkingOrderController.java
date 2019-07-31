@@ -47,12 +47,6 @@ public class ParkingOrderController {
         return ResponseEntityUtil.responseSuccess(parkingOrderService.getOrdersByParkingBoy(parkingBoyName,"park"));
     }
 
-
-    @GetMapping(value = "/boy",params = "parkingBoyName")
-    public ResponseEntity getOrdersByParkingBoy(@RequestParam String parkingBoyName){
-        return ResponseEntityUtil.responseSuccess(parkingOrderService.getOrdersByParkingBoy(parkingBoyName,"all"));
-    }
-
     @PostMapping
     public ResponseEntity createParkingOrders(@RequestBody AppointmentDto appointmentDto) {
         return ResponseEntityUtil.responseSuccess(parkingOrderService.createParkingOrders(appointmentDto));

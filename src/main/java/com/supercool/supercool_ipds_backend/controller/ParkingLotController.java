@@ -32,6 +32,12 @@ public class ParkingLotController {
         return ResponseEntityUtil.responseSuccess(parkingLotService.findParkingLotByName("%"+name+"%"));
     }
 
+
+    @GetMapping(value = "/boy",params = "parkingBoyName")
+    public ResponseEntity getOrdersByParkingBoy(@RequestParam String parkingBoyName){
+        return ResponseEntityUtil.responseSuccess(parkingLotService.getParkingLotsByBoy(parkingBoyName));
+    }
+
     @PutMapping
     public ResponseEntity updateParkingLot (@RequestBody ParkingLot parkingLot) {
         parkingLotService.updateParkingLot(parkingLot);

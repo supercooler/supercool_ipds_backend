@@ -43,7 +43,13 @@ public class ParkingLotService {
         }
     }
 
+
+
     public List<ParkingLot> getAllParkingLots() {
         return parkingLotRepository.findAll();
+    }
+
+    public List<ParkingLot> getParkingLotsByBoy(String parkingBoyName) {
+        return parkingLotRepository.findByParkingBoy(parkingBoyName);
     }
 }
