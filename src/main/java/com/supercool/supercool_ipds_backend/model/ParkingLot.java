@@ -3,6 +3,7 @@ package com.supercool.supercool_ipds_backend.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class ParkingLot {
@@ -15,6 +16,7 @@ public class ParkingLot {
 
     private int capacity;
 
+    @NotNull
     private int restCapacity;
 
     private String address;
