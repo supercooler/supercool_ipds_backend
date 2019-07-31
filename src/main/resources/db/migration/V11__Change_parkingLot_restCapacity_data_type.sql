@@ -1,0 +1,1 @@
+ALTER TABLE parking_lot modify rest_capacity integer NOT NULL;

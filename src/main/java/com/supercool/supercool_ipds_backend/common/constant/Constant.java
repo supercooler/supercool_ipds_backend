@@ -37,4 +37,7 @@ public class Constant {
     // parking boy status
     public static final String BOY_BUSY = "忙碌";
     public static final String BOY_EASY = "空闲";
+    public static final String BOY_NOT_EXIST_CODE="30001";
+    public static final String REST_CAPACITY_ZERO_CODE="30002";
+    public static final String INVALID_PARKING_ORDER = "30003";
 }

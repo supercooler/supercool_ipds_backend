@@ -52,7 +52,7 @@ public class ParkingOrderService {
     }
 
     private ParkingOrder generateParkingOrder(AppointmentDto appointmentDto) {
-        ParkingBoy parkingBoy = distributionExcellentParkingBoy.getExcellentParkingBoy();
+        ParkingBoy parkingBoy = distributionExcellentParkingBoy.getExcellentParkingBoy(new ParkingOrder());//////
         if (parkingBoy!=null) {
             ParkingOrder parkingOrder = new ParkingOrder();
             parkingOrder.setUser(appointmentDto.getUser());
