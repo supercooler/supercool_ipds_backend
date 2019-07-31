@@ -111,6 +111,7 @@ public class ParkingOrderService {
         switch (type){
             case "fetch":return parkingOrderRepository.findByParkingBoyFetch(parkingBoyName);
             case "park":return parkingOrderRepository.findByParkingBoyPark(parkingBoyName);
+            case "all":return parkingOrderRepository.findByParkingBoy(parkingBoyName);
         }
         return null;
     }
