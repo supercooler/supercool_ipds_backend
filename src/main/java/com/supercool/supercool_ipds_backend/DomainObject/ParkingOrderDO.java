@@ -1,12 +1,7 @@
 package com.supercool.supercool_ipds_backend.DomainObject;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-@Entity
 public class ParkingOrderDO {
 
-    @Id
     private Long parkingBoyId;
     private double score;
     private Long count;
