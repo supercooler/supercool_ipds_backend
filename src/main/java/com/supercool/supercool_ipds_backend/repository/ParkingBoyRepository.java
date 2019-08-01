@@ -15,4 +15,6 @@ public interface ParkingBoyRepository extends JpaRepository<ParkingBoy, Long> {
     List<ParkingBoy> findByGender(String gender);
     @Query(value = "select * from parking_boy where upper(tag) like ?1 order by birth_year desc", nativeQuery = true)
     List<ParkingBoy> findByTagLike(String tag);
+    @Query(value = "select * from parking_boy where status='空闲'",nativeQuery = true)
+    List<ParkingBoy> findNotBusyBoys();
 }

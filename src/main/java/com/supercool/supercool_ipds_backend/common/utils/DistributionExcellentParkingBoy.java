@@ -85,7 +85,10 @@ public class DistributionExcellentParkingBoy {
 
         //parking boy and order table is not null
         List<ParkingOrderDO> parkingOrderDOs = distributionExcellentParkingBoy.parkingOrderRepository.loadParkingOrderDOs();
-        if (parkingOrderDOs == null || parkingOrderDOs.isEmpty()) return null;
+        if (parkingOrderDOs == null || parkingOrderDOs.isEmpty()){
+            List<ParkingBoy> parkingBoysNotBusy = distributionExcellentParkingBoy.parkingBoyRepository.findNotBusyBoys();
+            return parkingBoysNotBusy!=null&&parkingBoysNotBusy.size()!=0?parkingBoysNotBusy.get(0):null;
+        }
         ParkingOrderDO parkingOrderDO = parkingOrderDOs.stream().reduce((a, b) -> {
             if (calculateParkingBoyScore(a.getScore(), a.getCount()) - calculateParkingBoyScore(b.getScore(), b.getCount()) >= 0.001)
                 return a;
