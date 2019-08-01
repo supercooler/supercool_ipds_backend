@@ -10,9 +10,6 @@ import java.util.List;
 
 public interface ParkingOrderRepository extends JpaRepository<ParkingOrder, Long> {
 
-    @Query(value = "select new com.supercool.supercool_ipds_backend.DomainObject.ParkingOrderDO(po.parkingBoy.id as parkingBoyId, avg(po.score) as score, count(po.parkingBoy) as count) from ParkingOrder po left join ParkingBoy pb on (po.parkingBoy.id = pb.id) where pb.status = '空闲' group by pb.id")
-    List<ParkingOrderDO> loadParkingOrderDOs();
-
     @Query(value = "select po.* from parking_order po left join parking_boy pb on (po.parking_boy_id = pb.id) where pb.name like ?1", nativeQuery = true)
     List<ParkingOrder> findByBoy(String info);
 

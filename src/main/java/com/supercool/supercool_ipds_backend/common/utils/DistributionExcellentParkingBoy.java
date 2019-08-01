@@ -6,6 +6,7 @@ import com.supercool.supercool_ipds_backend.model.ParkingBoy;
 import com.supercool.supercool_ipds_backend.model.ParkingOrder;
 import com.supercool.supercool_ipds_backend.repository.ParkingBoyRepository;
 import com.supercool.supercool_ipds_backend.repository.ParkingLotRepository;
+import com.supercool.supercool_ipds_backend.repository.ParkingOrderDORepository;
 import com.supercool.supercool_ipds_backend.repository.ParkingOrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -34,6 +35,9 @@ public class DistributionExcellentParkingBoy {
 
     @Autowired
     private ParkingLotRepository parkingLotRepository;
+
+    @Autowired
+    private ParkingOrderDORepository parkingOrderDORepository;
 
     private static DistributionExcellentParkingBoy distributionExcellentParkingBoy;
 
@@ -84,7 +88,7 @@ public class DistributionExcellentParkingBoy {
         if (parkingBoysCount == busyParkingBoysCount) return null;
 
         //parking boy and order table is not null
-        List<ParkingOrderDO> parkingOrderDOs = distributionExcellentParkingBoy.parkingOrderRepository.loadParkingOrderDOs();
+        List<ParkingOrderDO> parkingOrderDOs = distributionExcellentParkingBoy.parkingOrderDORepository.loadParkingOrderDOs();
         if (parkingOrderDOs == null || parkingOrderDOs.isEmpty()) return null;
         ParkingOrderDO parkingOrderDO = parkingOrderDOs.stream().reduce((a, b) -> {
             if (calculateParkingBoyScore(a.getScore(), a.getCount()) - calculateParkingBoyScore(b.getScore(), b.getCount()) >= 0.001)
