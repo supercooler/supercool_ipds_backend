@@ -14,9 +14,6 @@ public interface ParkingLotRepository extends JpaRepository<ParkingLot, Long> {
 
     @Query(value = "SELECT * FROM PARKING_LOT where PARKING_BOY_ID is not null", nativeQuery = true)
     List<ParkingLot> findAllManagementParkingLots();
-    @Query(value = "select sum(pb_rest_sum) \n" +
-            "from (select parking_boy_id, sum(rest_capacity) as pb_rest_sum\n" +
-            "from parking_lot\n" +
-            "group by parking_boy_id)", nativeQuery = true)
+    @Query(value = "select sum(temp.pb_rest_sum) from (select parking_boy_id, sum(rest_capacity) as pb_rest_sum from parking_lot group by parking_boy_id) as temp;", nativeQuery = true)
     Long getAllRestCapacity();
 }
