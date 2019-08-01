@@ -59,8 +59,8 @@ public class DistributionExcellentParkingBoy {
             throw new CustomException(Parking_Boy_Not_Exist_Exception.getMessage(), Parking_Boy_Not_Exist_Exception.getCode());
 
         //all parking lots' rest capacity = 0
-        int allParkingLotsRestCapacity = distributionExcellentParkingBoy.parkingLotRepository.getAllRestCapacity();
-        if (allParkingLotsRestCapacity <= 0) {
+        Long allParkingLotsRestCapacity = distributionExcellentParkingBoy.parkingLotRepository.getAllRestCapacity();
+        if (allParkingLotsRestCapacity == null || allParkingLotsRestCapacity <= 0) {
             throw new CustomException(ALL_PARKING_LOTS_REST_CAPACITY_IS_ZERO.getMessage(), ALL_PARKING_LOTS_REST_CAPACITY_IS_ZERO.getCode());
         }
 

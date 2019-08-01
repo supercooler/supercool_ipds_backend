@@ -18,5 +18,5 @@ public interface ParkingLotRepository extends JpaRepository<ParkingLot, Long> {
             "from (select parking_boy_id, sum(rest_capacity) as pb_rest_sum\n" +
             "from parking_lot\n" +
             "group by parking_boy_id)", nativeQuery = true)
-    int getAllRestCapacity();
+    Long getAllRestCapacity();
 }
